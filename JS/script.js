@@ -5,27 +5,26 @@ let list = document.querySelector("#myList")
 
 
 
-items.forEach(function(item){
-
+items.forEach(function (item) {
     CreateItem(item)
 })
 
 
-// click event
-list.addEventListener('click', function(item){
+// Click Events
+list.addEventListener('click', function (item) {
 
-    if(item.target.tagName == 'LI') {
+    if (item.target.tagName == 'LI') {
         item.target.classList.toggle('checked')
         ToggleDeleteButton()
     }
 
 })
 
-
+// Delete Elements
 function ToggleDeleteButton() {
     let checkList = document.querySelectorAll('.list-group-item.checked')
 
-    if(checkList.length > 0) {
+    if (checkList.length > 0) {
         document.querySelector('#deleteAll').classList.remove('d-none')
     } else {
         document.querySelector('#deleteAll').classList.add('d-none')
@@ -33,10 +32,10 @@ function ToggleDeleteButton() {
 }
 
 // Delete All
-document.querySelector('#deleteAll').onclick = function() {
+document.querySelector('#deleteAll').onclick = function () {
     let element = document.querySelectorAll('.checked')
 
-    element.forEach(function(item){
+    element.forEach(function (item) {
 
         item.style.display = 'none';
     });
@@ -44,12 +43,12 @@ document.querySelector('#deleteAll').onclick = function() {
 }
 
 
-// Eleman girilmezse hata
-document.querySelector('#btnCreate').onclick = function(){
+// Error message
+document.querySelector('#btnCreate').onclick = function () {
 
     let item = document.querySelector('#txtItem').value
-    
-    if(item === '') {
+
+    if (item === '') {
         alert('lutfen bir deger giriniz')
         return
     }
@@ -57,8 +56,8 @@ document.querySelector('#btnCreate').onclick = function(){
     CreateItem(item)
 }
 
-// Liste elemanlarini olusturma
-function CreateItem(item){
+// List Elements
+function CreateItem(item) {
     let li = document.createElement('li');
     let t = document.createTextNode(item)
     li.className = 'list-group-item'
@@ -71,7 +70,7 @@ function CreateItem(item){
     span.appendChild(text)
     li.appendChild(span)
 
-    span.onclick = function() {
+    span.onclick = function () {
         let li = this.parentElement
         li.style.display = 'none';
         li.classList.remove('checked')
