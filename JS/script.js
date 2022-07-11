@@ -4,6 +4,26 @@ let items = ['item 1', 'item 2', 'item 3', 'item4']
 let list = document.querySelector("#myList")
 
 
+// Create List Elements
+function CreateItem(item) {
+    let li = document.createElement('li');
+    let t = document.createTextNode(item)
+    li.className = 'list-group-item'
+    li.appendChild(t)
+    list.appendChild(li)
+
+    let span = document.createElement('span')
+    let text = document.createTextNode('\u00D7')
+    span.className = 'close';
+    span.appendChild(text)
+    li.appendChild(span)
+
+    span.onclick = function () {
+        let li = this.parentElement
+        li.style.display = 'none';
+        li.classList.remove('checked')
+    }
+}
 
 items.forEach(function (item) {
     CreateItem(item)
@@ -56,26 +76,7 @@ document.querySelector('#btnCreate').onclick = function () {
     CreateItem(item)
 }
 
-// List Elements
-function CreateItem(item) {
-    let li = document.createElement('li');
-    let t = document.createTextNode(item)
-    li.className = 'list-group-item'
-    li.appendChild(t)
-    list.appendChild(li)
 
-    let span = document.createElement('span')
-    let text = document.createTextNode('\u00D7')
-    span.className = 'close';
-    span.appendChild(text)
-    li.appendChild(span)
-
-    span.onclick = function () {
-        let li = this.parentElement
-        li.style.display = 'none';
-        li.classList.remove('checked')
-    }
-}
 
 
 
