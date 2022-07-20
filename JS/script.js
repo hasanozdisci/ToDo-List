@@ -1,82 +1,42 @@
-let items = ['item 1', 'item 2', 'item 3', 'item4']
+const txtItem = document.querySelector('#txtItem');
+const addButton = document.querySelector('#btnCreate');
+const myList = document.querySelector('#myList')
 
 
-let list = document.querySelector("#myList")
-
-
-// Create List Elements
-function CreateItem(item) {
-    let li = document.createElement('li');
-    let t = document.createTextNode(item)
-    li.className = 'list-group-item'
-    li.appendChild(t)
-    list.appendChild(li)
-
-    let span = document.createElement('span')
-    let text = document.createTextNode('\u00D7')
-    span.className = 'close';
-    span.appendChild(text)
-    li.appendChild(span)
-
-    span.onclick = function () {
-        let li = this.parentElement
-        li.style.display = 'none';
-        li.classList.remove('checked')
-    }
-}
-
-items.forEach(function (item) {
-    CreateItem(item)
+addButton.addEventListener('click', function () {
+    const inputValue = txtItem.value;
+    const li = document.createElement('li');
+    li.classList.add('checked');
+    li.innerHTML = inputValue;
+    li.className = 'list-group-item';
+    myList.append(li);
+    txtItem.value = ""
 })
 
-
-// Click Events
-list.addEventListener('click', function (item) {
-
+myList.addEventListener('click', function (item) {
     if (item.target.tagName == 'LI') {
-        item.target.classList.toggle('checked')
-        ToggleDeleteButton()
+        item.target.classList.toggle('checked');
+        deleteButton();
     }
-
 })
 
-// Delete Elements
-function ToggleDeleteButton() {
-    let checkList = document.querySelectorAll('.list-group-item.checked')
-
-    if (checkList.length > 0) {
-        document.querySelector('#deleteAll').classList.remove('d-none')
+function deleteButton() {
+    let checkListElement = document.querySelectorAll('.list-group-item.checked')
+    if (checkListElement.length > 0) {
+        document.querySelector('#deleteAll').classList.remove('d-none');
     } else {
         document.querySelector('#deleteAll').classList.add('d-none')
     }
 }
 
-// Delete All
-document.querySelector('#deleteAll').onclick = function () {
+const deleteAll = document.querySelector('#deleteAll');
+
+deleteAll.addEventListener('click', function () {
     let element = document.querySelectorAll('.checked')
-
     element.forEach(function (item) {
-
-        item.style.display = 'none';
-    });
-
-}
-
-
-// Error message
-document.querySelector('#btnCreate').onclick = function () {
-
-    let item = document.querySelector('#txtItem').value
-
-    if (item === '') {
-        alert('lutfen bir deger giriniz')
-        return
-    }
-
-    CreateItem(item)
-}
-
-
-
+        item.style.display = 'none'
+    })
+    deleteButton();
+})
 
 
