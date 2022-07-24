@@ -8,11 +8,10 @@ function createElement() {
     newLI.classList.add('checked')
     newLI.className = 'list-group-item'
     newLI.textContent = txtItem.value
-    myList.append(newLI)
-    txtItem.value = ""
+    emptyTextError(newLI.textContent, newLI)
 }
 
-// when the button clicked createElement function will create another li element
+// when the button clicked, createElement function will create another li element
 btnCreate.addEventListener('click', createElement)
 
 
@@ -40,6 +39,7 @@ function deleteButton() {
 
 
 
+
 const deleteAll = document.querySelector('#deleteAll');
 
 // delete list elements with delete button
@@ -48,5 +48,14 @@ deleteAll.addEventListener('click', function () {
     element.forEach(function (item) {
         item.style.display = 'none'
     })
-    deleteButton();
 })
+
+// Error Message
+function emptyTextError(value, element) {
+    if (value === '') {
+        alert('lutfen bir deger giriniz')
+    } else {
+        myList.append(element)
+        txtItem.value = ""
+    }
+}
