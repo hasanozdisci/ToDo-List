@@ -30,17 +30,12 @@ function deleteButton() {
   }
 }
 
-
-// myList elements clickable
-
-
-// if myList have any element delete button display none
-
 // delete list elements with delete button
 deleteAll.addEventListener("click", function () {
   let element = document.querySelectorAll(".checked");
   element.forEach(function (item) {
     item.style.display = "none";
+    deleteAll.classList.add("d-none");
   });
 });
 
