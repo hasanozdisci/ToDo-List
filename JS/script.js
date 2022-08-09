@@ -1,3 +1,4 @@
+//Select Items
 const txtItem = document.querySelector("#txtItem");
 const btnCreate = document.querySelector("#btnCreate");
 const myList = document.querySelector("#myList");
@@ -10,13 +11,14 @@ function createElement() {
   newLI.textContent = txtItem.value;
   emptyTextError(newLI.textContent, newLI);
 }
-
-// when the button clicked, createElement function will create another li element
+// when the button clicked, createElement function will create another 'li' element
 btnCreate.addEventListener("click", createElement);
 
+//Select Delete Button and List Elements
 const deleteAll = document.querySelector("#deleteAll");
 const checkListElement = document.querySelectorAll(".list-group-item.checked");
 
+// when the list element clicked, list element color will change
 myList.addEventListener("click", function(item) {
     if (item.target.tagName == "LI") {
       item.target.classList.toggle("checked");
@@ -24,6 +26,7 @@ myList.addEventListener("click", function(item) {
     }
   });
 
+//Delete function  
 function deleteButton() {
   if (checkListElement) {
     deleteAll.classList.remove("d-none");
